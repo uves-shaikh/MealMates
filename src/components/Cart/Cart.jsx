@@ -6,41 +6,41 @@ import CartItem from './CartItem'
 
 const Cart = (props) => {
 
-    const cartCtx = useContext(CartContext)
-    const [showOrder, setShowOrder ] = useState(false)
+  const cartCtx = useContext(CartContext)
+  const [showOrder, setShowOrder] = useState(false)
 
-    const totalAmount = `${cartCtx.totalAmount.toFixed(2)}`
-    const hasItems = cartCtx.items.length > 0;
+  const totalAmount = `${cartCtx.totalAmount.toFixed(2)}`
+  const hasItems = cartCtx.items.length > 0;
 
-    const cartItemRemoveHandler = (id) => {
-      cartCtx.removeItem(id)
-    }
+  const cartItemRemoveHandler = (id) => {
+    cartCtx.removeItem(id);
+  };
 
-    const cartItemAddHandler = (item) => {
-      cartCtx.addItem({ ...item,amount : 1})
-    }
+  const cartItemAddHandler = (item) => {
+    cartCtx.addItem({ ...item, amount: 1 });
+  };
 
-    const orderHandler = () => {
-      cartCtx.clearall()
-      setShowOrder(true);
-    }
 
-    const cartItems = (
-      <ul className='cart-items'>
-        {
-          cartCtx.items.map((item) => (
-            <CartItem
+  const orderHanlder = () => {
+    cartCtx.clearall();
+    setShowOrder(true);
+  };
+
+  const cartItems = (
+    <ul className='cart-items'>
+      {cartCtx.items.map((item) => (
+          <CartItem
             key={item.id}
             name={item.name}
             amount={item.amount}
             price={item.price}
             onRemove={cartItemRemoveHandler.bind(null, item.id)}
-            onAdd={cartItemAddHandler.bind(null, item)}     
-            />
-          ))
-        }
-      </ul>
-    )
+            onAdd={cartItemAddHandler.bind(null, item)}
+          />
+        ))
+      }
+    </ul>
+  )
 
   return (
     <Model onClose={props.onClose}>
@@ -52,7 +52,7 @@ const Cart = (props) => {
       <div className="actions">
         <button className="button--alt" onClick={props.onClose}>Close</button>
         {hasItems && (
-          <button className='button' onClick={orderHandler} >Order</button>
+          <button className='button' onClick={orderHanlder} >Order</button>
         )}
       </div>
     </Model>

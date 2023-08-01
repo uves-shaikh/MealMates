@@ -10,24 +10,23 @@ const MealItemForm = (props) => {
   const amountInputRef = useRef();
 
   const submitHandler = (event) => {
-
-    event.preventDefault()
+    event.preventDefault();
 
     const enteredAmount = amountInputRef.current.value;
     const enteredAmountNumber = +enteredAmount;
 
-    if(
+    if (
       enteredAmount.trim().length === 0 ||
       enteredAmountNumber < 1 ||
       enteredAmountNumber > 10
     ) {
-      setAmountIsValid(false)
-      return
+      setAmountIsValid(false);
+      return;
     }
 
-    props.onAddToCart(enteredAmountNumber)
-    amountInputRef.current.value = "0"
-  }
+    props.onAddToCart(enteredAmountNumber);
+    amountInputRef.current.value = "0";
+  };
 
   return (
     <form className='form' onSubmit={submitHandler}>
@@ -40,12 +39,12 @@ const MealItemForm = (props) => {
           min: "1",
           max: "10",
           step: "1",
-          defaultValue: "0"
+          defaultValue: "0",
         }}
       />
 
       <button>+ Add</button>
-      {!amountIsValid && <p>Please enter valid amount {1 - 10} </p>}
+      {!amountIsValid && <p>Please enter valid amount {1 - 10}. </p>}
     </form>
   )
 }

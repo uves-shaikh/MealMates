@@ -8,4 +8,4 @@ const CartContext = React.createContext({
     clearall: () => { },
 });
 
-export default CartContext
+export default CartContext;

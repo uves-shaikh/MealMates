@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const [cartIsShown,setCartIsShown] = useState(false)
+  const [cartIsShown, setCartIsShown] = useState(false)
 
   const showCartHandler = () => {
     setCartIsShown(true)
@@ -21,7 +21,7 @@ function App() {
   return (
     <CartProvider>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header />
+      <Header onShowCart={showCartHandler} onClose={hideCartHandler} />
 
       <main>
         <Meals />
