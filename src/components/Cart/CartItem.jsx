@@ -1,4 +1,5 @@
 import React from 'react'
+import './cartItem.css'
 
 const CartItem = (props) => {
 
@@ -10,7 +11,7 @@ const CartItem = (props) => {
                 <h2>{props.name}</h2>
                 <div className='summary'>
                     <span className="price">&#8377;{price}</span>
-                    <span className="amount">x {props.amount} </span>
+                    <span className="amount"> x {props.amount} </span>
                 </div>
             </div>
             <div className="actions">

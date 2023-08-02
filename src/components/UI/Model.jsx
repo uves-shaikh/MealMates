@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './model.css'
 
 const portalElement = document.getElementById("overlays")
 
 const ModalOverlay = (props) => {
     return (
-        <div className='model'>
+        <div className='modal'>
             <div className='content'>{props.children}</div>
         </div>
     )

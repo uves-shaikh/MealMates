@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import './cart.css'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import CartContext from '../../store/CartContext'
-import classes from './cart.css'
 
 const HeaderCart = (props) => {
 
     const [btnIsHighlighted, setBtnIsHighlighted] = useState(false)
     const cartCtx = useContext(CartContext)
+
+    const button = 'button';
+    const bump = 'bump';
 
     const { items } = cartCtx;
 
@@ -15,7 +17,8 @@ const HeaderCart = (props) => {
         return curNumber + item.amount;
     }, 0);
 
-    const btnClasses = `${classes.button} ${btnIsHighlighted ? classes.bump : ""}`
+    // const btnClasses = `${classes.button} ${btnIsHighlighted ? classes.bump : ""}`
+    const btnClasses = `${button} ${btnIsHighlighted ? bump : ""}`;
 
     useEffect(() => {
         if (items.length === 0) {
@@ -33,7 +36,7 @@ const HeaderCart = (props) => {
     }, [items])
 
     return (
-        <button className='button' onClick={props.onClick}>
+        <button className={btnClasses} onClick={props.onClick}>
             <span className='icon'>
                 <AiOutlineShoppingCart onClick={props.onShowCart} />
             </span>

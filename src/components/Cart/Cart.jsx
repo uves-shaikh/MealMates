@@ -3,6 +3,7 @@ import Model from '../UI/Model'
 import CartContext from '../../store/CartContext'
 import './cart.css'
 import CartItem from './CartItem'
+import OrderDelivered from './OrderDelivered'
 
 const Cart = (props) => {
 
@@ -29,32 +30,38 @@ const Cart = (props) => {
   const cartItems = (
     <ul className='cart-items'>
       {cartCtx.items.map((item) => (
-          <CartItem
-            key={item.id}
-            name={item.name}
-            amount={item.amount}
-            price={item.price}
-            onRemove={cartItemRemoveHandler.bind(null, item.id)}
-            onAdd={cartItemAddHandler.bind(null, item)}
-          />
-        ))
+        <CartItem
+          key={item.id}
+          name={item.name}
+          amount={item.amount}
+          price={item.price}
+          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onAdd={cartItemAddHandler.bind(null, item)}
+        />
+      ))
       }
     </ul>
   )
 
   return (
     <Model onClose={props.onClose}>
-      {cartItems}
-      <div className="total">
-        <span>Total Amount</span>
-        <span>{totalAmount}</span>
-      </div>
-      <div className="actions">
-        <button className="button--alt" onClick={props.onClose}>Close</button>
-        {hasItems && (
-          <button className='button' onClick={orderHanlder} >Order</button>
-        )}
-      </div>
+      {!showOrder ? (
+        <>
+          {cartItems}
+          <div className="total">
+            <span>Total Amount</span>
+            <span>&#8377;{totalAmount}</span>
+          </div>
+          <div className="actions">
+            <button className="button--alt" onClick={props.onClose}>Close</button>
+            {hasItems && (
+              <button className='button' onClick={orderHanlder} >Order</button>
+            )}
+          </div>
+        </>
+      ) : (
+        <OrderDelivered onClose={props.onClose} />
+      )}
     </Model>
   )
 }
